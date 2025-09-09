@@ -1,0 +1,245 @@
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    line-height: 1.6;
+}
+
+/* Encabezado (Header) */
+header {
+    background-color: #0d0d0d;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #cccccc;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+/* Sección principal (Main) */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1500x800/222222/FFFFFF?text=Mally+Wear+Modern') center center / cover no-repeat;
+    color: #fff;
+    text-align: center;
+    padding: 6rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    background-color: #ffffff;
+    color: #0d0d0d;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 1px;
+}
+
+.cta-button:hover {
+    background-color: #cccccc;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+}
+
+/* Sección de productos */
+.productos {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #1a1a1a;
+}
+
+.productos h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.galeria-productos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.producto {
+    background-color: #0d0d0d;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    width: 320px;
+    text-align: center;
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.producto:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.8);
+}
+
+.producto img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.producto:hover img {
+    transform: scale(1.05);
+}
+
+.producto h3 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.precio {
+    font-size: 1.4rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.add-to-cart {
+    background-color: #ffffff;
+    color: #0d0d0d;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.add-to-cart:hover {
+    background-color: #cccccc;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(255,255,255,0.1);
+}
+
+/* Sección de contacto */
+.contacto {
+    background-color: #0d0d0d;
+    padding: 4rem 2rem;
+    text-align: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+}
+
+.contacto h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.contacto form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contacto input, .contacto textarea {
+    padding: 1rem;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background-color: #222;
+    color: #f0f0f0;
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.contacto input:focus, .contacto textarea:focus {
+    border-color: #ffffff;
+    outline: none;
+}
+
+.contacto textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contacto button[type="submit"] {
+    background-color: #ffffff;
+    color: #0d0d0d;
+    padding: 1rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 1px;
+}
+
+.contacto button[type="submit"]:hover {
+    background-color: #cccccc;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+}
+
+/* Pie de página (Footer) */
+footer {
+    background-color: #0d0d0d;
+    color: #cccccc;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+}

@@ -1,4 +1,4 @@
-/* Estilos generales (válidos para todos los dispositivos) */
+/* Estilos Generales y Tipografía */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -16,6 +16,9 @@ header {
     align-items: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     flex-wrap: wrap;
+    position: sticky; /* Sticky header para que se mantenga visible */
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
@@ -46,6 +49,7 @@ nav a:hover {
     color: #ffffff;
 }
 
+/* Sección Hero */
 .hero {
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1500x800/222222/FFFFFF?text=Mally+Wear+Modern') center center / cover no-repeat;
     color: #fff;
@@ -91,6 +95,7 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(255,255,255,0.2);
 }
 
+/* Sección de Productos */
 .productos {
     padding: 4rem 2rem;
     text-align: center;
@@ -131,6 +136,8 @@ nav a:hover {
 
 .producto img {
     max-width: 100%;
+    height: 300px; /* Tamaño fijo para consistencia */
+    object-fit: cover; /* Asegura que la imagen se ajuste */
     border-radius: 8px;
     margin-bottom: 1rem;
     transition: transform 0.3s ease-in-out;
@@ -171,6 +178,96 @@ nav a:hover {
     box-shadow: 0 3px 10px rgba(255,255,255,0.1);
 }
 
+/* Carrito de Compras (Modal) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 10% auto;
+    padding: 2rem;
+    border: 1px solid #444;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover, .close-btn:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+.cart-items-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+    padding: 1rem 0;
+}
+
+.cart-item-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cart-item-info img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cart-item-info h4 {
+    margin: 0;
+}
+
+.cart-item .remove-btn {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.cart-item .remove-btn:hover {
+    color: #ff0000;
+}
+
+.cart-total {
+    text-align: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+/* Sección de Contacto y Estado */
 .contacto {
     background-color: #0d0d0d;
     padding: 4rem 2rem;
@@ -213,25 +310,59 @@ nav a:hover {
     resize: vertical;
 }
 
-.contacto button[type="submit"] {
-    background-color: #ffffff;
-    color: #0d0d0d;
+.status-message {
+    margin-top: 1rem;
     padding: 1rem;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
+    border-radius: 8px;
+    display: none;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    letter-spacing: 1px;
 }
 
-.contacto button[type="submit"]:hover {
-    background-color: #cccccc;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+.status-message.success {
+    background-color: #28a745;
+    color: #fff;
 }
 
+.status-message.error {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Sección de Redes Sociales */
+.redes-sociales {
+    padding: 2rem;
+    text-align: center;
+    background-color: #1a1a1a;
+}
+
+.redes-sociales h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-links a:hover {
+    color: #cccccc;
+}
+
+.social-links a .fab {
+    margin-right: 0.5rem;
+}
+
+/* Pie de página (Footer) */
 footer {
     background-color: #0d0d0d;
     color: #cccccc;
@@ -241,62 +372,51 @@ footer {
     box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
 }
 
-/* --- Media Queries: Estilos para pantallas pequeñas (móviles) --- */
+/* Diseño Adaptativo (Responsive Design) */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
         text-align: center;
         padding: 1rem;
     }
-
     nav ul {
         flex-direction: column;
         gap: 1rem;
         margin-top: 1rem;
     }
-    
     .logo {
         margin-bottom: 0.5rem;
     }
-
     .hero h1 {
         font-size: 2.5rem;
     }
-
     .hero p {
         font-size: 1.1rem;
         padding: 0 1rem;
     }
-    
     .cta-button {
         padding: 0.8rem 2rem;
         font-size: 1rem;
     }
-
     .productos {
         padding: 2rem 1rem;
     }
-
     .productos h2 {
         font-size: 2rem;
         margin-bottom: 2rem;
     }
-
     .galeria-productos {
         flex-direction: column;
         align-items: center;
         gap: 2rem;
     }
-
     .producto {
         width: 90%;
         margin-bottom: 1rem;
     }
-    
     .contacto h2 {
         font-size: 2rem;
     }
-
     .contacto form {
         width: 100%;
         padding: 0 1rem;

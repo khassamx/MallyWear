@@ -1,67 +1,118 @@
 // app.js
 
-import { displayProducts, products } from './modules/products.js';
-import { addToCart, getCart } from './modules/cart.js';
+import { getProducts } from './modules/products.js';
+import { addToCart, getCart, renderCartItems, calculateCartTotal } from './modules/cart.js';
+import { showStatusMessage } from './modules/ui.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mostrar los productos al cargar la página
-    displayProducts();
+document.addEventListener('DOMContentLoaded', async () => {
+    const productListElement = document.getElementById('product-list');
+    const cartButton = document.getElementById('cart-btn');
+    const cartModal = document.getElementById('cart-modal');
+    const closeModalBtn = document.querySelector('.close-btn');
+    const contactForm = document.getElementById('contact-form');
+    const ctaButton = document.querySelector('.cta-button');
 
-    // 2. Lógica para añadir productos al carrito
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const productId = event.target.dataset.id;
-            addToCart(productId);
-        });
+    // Cargar productos desde el archivo JSON
+    const products = await getProducts();
+
+    // Renderizar productos en la página
+    products.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'producto';
+        productDiv.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p class="precio">Gs. ${product.price_gs.toLocaleString('es-PY')}<br><span>($${product.price_usd.toFixed(2)})</span></p>
+            <button class="add-to-cart" data-id="${product.id}">Añadir al Carrito</button>
+        `;
+        productListElement.appendChild(productDiv);
     });
 
-    // 3. Lógica para enviar el pedido (simulación)
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        // 3.1. Validar que el usuario está en Paraguay
-        // En un sitio real, usarías una API de geolocalización. Aquí es una simulación.
-        if (!navigator.geolocation) {
-             alert('Tu navegador no soporta geolocalización. El pedido no puede ser enviado.');
-             return;
+    // Evento para añadir al carrito
+    productListElement.addEventListener('click', (event) => {
+        if (event.target.classList.contains('add-to-cart')) {
+            const productId = event.target.dataset.id;
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                addToCart(product);
+                showStatusMessage(`¡${product.name} ha sido añadido al carrito! 🎉`, 'success');
+            }
         }
+    });
 
-        navigator.geolocation.getCurrentPosition(position => {
-            // SIMULACIÓN: En un sitio real, harías una llamada a una API
-            // para verificar la ubicación basándote en la latitud/longitud.
-            // Aquí simplemente asumimos que si la geolocalización funciona,
-            // el pedido se puede procesar.
-            
+    // Lógica del Carrito (Modal)
+    cartButton.addEventListener('click', () => {
+        renderCartItems();
+        cartModal.style.display = 'block';
+    });
+    closeModalBtn.addEventListener('click', () => {
+        cartModal.style.display = 'none';
+    });
+    window.addEventListener('click', (event) => {
+        if (event.target === cartModal) {
+            cartModal.style.display = 'none';
+        }
+    });
+
+    // Lógica del botón "Finalizar Pedido"
+    const checkoutBtn = document.getElementById('checkout-btn');
+    checkoutBtn.addEventListener('click', () => {
+        if (getCart().length === 0) {
+            alert('Tu carrito está vacío. Añade productos antes de finalizar.');
+            return;
+        }
+        cartModal.style.display = 'none';
+        document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Lógica para enviar el pedido (simulación)
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        
+        showStatusMessage('Verificando ubicación...', 'info');
+        
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            const countryCode = data.country_code;
+
+            if (countryCode !== 'PY') {
+                showStatusMessage('Lo sentimos, en este momento solo podemos procesar pedidos desde Paraguay. Si eres de otro país, por favor contáctanos directamente para más información. Gracias por tu comprensión.', 'error');
+                return;
+            }
+
+            // Si está en Paraguay, procesa el pedido
             const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const message = formData.get('message');
-            const cartItems = getCart().map(id => {
-                const product = products.find(p => p.id === id);
-                return product ? product.name : 'Producto desconocido';
-            }).join(', ');
-
-            // 3.2. Crear el mensaje de pedido
             const pedido = {
-                nombre: name,
-                email: email,
-                telefono: phone,
-                detalles: message,
-                productos: cartItems
+                nombre: formData.get('name'),
+                email: formData.get('email'),
+                telefono: formData.get('phone'),
+                detalles: formData.get('message'),
+                productos: getCart().map(item => ({
+                    id: item.id,
+                    name: item.name,
+                    quantity: item.quantity,
+                    price_gs: item.price_gs
+                })),
+                total_gs: calculateCartTotal()
             };
 
             console.log('--- Nuevo Pedido ---');
             console.log(pedido);
-            alert('¡Pedido enviado con éxito! Nos pondremos en contacto contigo pronto para coordinar el pago y el envío.');
-            
-            // Aquí es donde un servidor real recibiría la información del pedido.
-            // Tú recibirías un email o una notificación en tu panel de control.
-        }, error => {
-            // Si la geolocalización falla, mostramos el mensaje de error.
-            alert('Lo siento, en este momento solo podemos procesar pedidos desde Paraguay. Por favor, asegúrate de tener la ubicación activada en tu navegador.');
-            console.error(error);
-        });
+
+            showStatusMessage('¡Tu pedido ha sido enviado con éxito! Nos pondremos en contacto contigo lo más rápido posible. 🚀', 'success');
+
+            // Aquí se reiniciaría el carrito después de un pedido exitoso
+            // cart = [];
+            // updateCartCount();
+        } catch (error) {
+            console.error('Error al verificar la ubicación:', error);
+            showStatusMessage('Hubo un problema al verificar tu ubicación. Por favor, asegúrate de tener la ubicación activada en tu navegador.', 'error');
+        }
+    });
+
+    // Lógica para el botón "Ver Colección"
+    ctaButton.addEventListener('click', () => {
+        document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
     });
 });

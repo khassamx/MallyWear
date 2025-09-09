@@ -1,0 +1,34 @@
+[
+    {
+        "id": "1",
+        "name": "Remera Classic Negra",
+        "price_gs": 120000,
+        "price_usd": 16.50,
+        "image": "./images/remera_negra.jpg",
+        "description": "Remera de algodón premium, ideal para cualquier ocasión. Comodidad y estilo en una sola prenda."
+    },
+    {
+        "id": "2",
+        "name": "Sudadera 'Mally'",
+        "price_gs": 250000,
+        "price_usd": 34.50,
+        "image": "./images/sudadera_mally.jpg",
+        "description": "Sudadera de diseño exclusivo con el logo de Mally Wear. Calidad y suavidad insuperables."
+    },
+    {
+        "id": "3",
+        "name": "Jeans Slim Fit Dark",
+        "price_gs": 380000,
+        "price_usd": 52.00,
+        "image": "./images/jeans_dark.jpg",
+        "description": "Jeans ajustados con un estilo moderno y versátil. Perfectos para el día a día."
+    },
+    {
+        "id": "4",
+        "name": "Zapatillas Urban Style",
+        "price_gs": 450000,
+        "price_usd": 62.00,
+        "image": "./images/zapatillas_urban.jpg",
+        "description": "Zapatillas cómodas y con un diseño que define tu estilo urbano. ¡Imprescindibles en tu armario!"
+    }
+]

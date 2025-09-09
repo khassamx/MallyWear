@@ -6,6 +6,7 @@
     <title>Mally Wear - Tienda de Ropa Online</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 
@@ -15,7 +16,7 @@
             <ul>
                 <li><a href="#productos">Productos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#" id="cart-btn">Carrito (<span id="cart-count">0</span>)</a></li>
+                <li><a href="#" id="cart-btn" class="cart-icon"><i class="fas fa-shopping-cart"></i> Carrito (<span id="cart-count">0</span>)</a></li>
             </ul>
         </nav>
     </header>
@@ -32,6 +33,19 @@
             <div id="product-list" class="galeria-productos">
                 </div>
         </section>
+        
+        <div id="cart-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3>Tu Carrito</h3>
+                <div id="cart-items" class="cart-items-container">
+                    </div>
+                <div class="cart-total">
+                    <h4>Total: <span id="cart-total-price">0 Gs.</span></h4>
+                </div>
+                <button id="checkout-btn" class="cta-button">Finalizar Pedido</button>
+            </div>
+        </div>
 
         <section id="contacto" class="contacto">
             <h2>Contáctanos para pedidos</h2>
@@ -42,12 +56,24 @@
                 <textarea id="message" placeholder="Mensaje o detalles del pedido" required></textarea>
                 <button type="submit">Enviar Pedido</button>
             </form>
+            <div id="status-message" class="status-message"></div>
+        </section>
+
+        <section class="redes-sociales">
+            <h2>Síguenos</h2>
+            <div class="social-links">
+                <a href="https://www.instagram.com/mallywear" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.tiktok.com/@mallywear" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://wa.me/595981123456" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Mally Wear. Todos los derechos reservados.</p>
-        <p>Envíos disponibles solo para Paraguay.</p>
+        <div class="footer-content">
+            <p>&copy; 2024 Mally Wear. Todos los derechos reservados.</p>
+            <p><strong>Fundador:</strong> [Tu Nombre] | <strong>CEO:</strong> [Nombre del CEO]</p>
+        </div>
     </footer>
 
     <script type="module" src="app.js"></script>

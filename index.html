@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mally Wear - Tienda de Ropa Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Mally Wear</div>
+        <nav>
+            <ul>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#" id="cart-btn">Carrito (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Descubre tu estilo único</h1>
+            <p>La mejor moda para ti, con calidad y diseño incomparables.</p>
+            <button class="cta-button">Ver Colección</button>
+        </section>
+
+        <section id="productos" class="productos">
+            <h2>Nuestros Productos</h2>
+            <div id="product-list" class="galeria-productos">
+                </div>
+        </section>
+
+        <section id="contacto" class="contacto">
+            <h2>Contáctanos para pedidos</h2>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Tu Nombre" required>
+                <input type="email" id="email" placeholder="Tu Email" required>
+                <input type="tel" id="phone" placeholder="Tu Teléfono" required>
+                <textarea id="message" placeholder="Mensaje o detalles del pedido" required></textarea>
+                <button type="submit">Enviar Pedido</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mally Wear. Todos los derechos reservados.</p>
+        <p>Envíos disponibles solo para Paraguay.</p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

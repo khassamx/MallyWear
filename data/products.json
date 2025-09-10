@@ -2,33 +2,61 @@
     {
         "id": "1",
         "name": "Remera Classic Negra",
-        "price_gs": 120000,
-        "price_usd": 16.50,
-        "image": "./images/remera_negra.jpg",
-        "description": "Remera de algodón premium, ideal para cualquier ocasión. Comodidad y estilo en una sola prenda."
+        "images": [
+            "./images/remera_negra_1.jpg",
+            "./images/remera_negra_2.jpg",
+            "./images/remera_negra_3.jpg"
+        ],
+        "description": "Remera de algodón premium, ideal para cualquier ocasión. Comodidad y estilo en una sola prenda.",
+        "variants": [
+            { "sku": "1A", "color": "Negro", "size": "S", "price_gs": 120000, "price_usd": 16.50, "stock": 15 },
+            { "sku": "1B", "color": "Negro", "size": "M", "price_gs": 120000, "price_usd": 16.50, "stock": 20 },
+            { "sku": "1C", "color": "Negro", "size": "L", "price_gs": 120000, "price_usd": 16.50, "stock": 10 }
+        ]
     },
     {
         "id": "2",
-        "name": "Sudadera 'Mally'",
-        "price_gs": 250000,
-        "price_usd": 34.50,
-        "image": "./images/sudadera_mally.jpg",
-        "description": "Sudadera de diseño exclusivo con el logo de Mally Wear. Calidad y suavidad insuperables."
+        "name": "Sudadera 'Mally' Blanca",
+        "images": [
+            "./images/sudadera_mally_1.jpg",
+            "./images/sudadera_mally_2.jpg",
+            "./images/sudadera_mally_3.jpg"
+        ],
+        "description": "Sudadera de diseño exclusivo con el logo de MallyWear. Calidad y suavidad insuperables.",
+        "variants": [
+            { "sku": "2A", "color": "Blanco", "size": "S", "price_gs": 250000, "price_usd": 34.50, "stock": 5 },
+            { "sku": "2B", "color": "Blanco", "size": "M", "price_gs": 250000, "price_usd": 34.50, "stock": 12 },
+            { "sku": "2C", "color": "Blanco", "size": "L", "price_gs": 250000, "price_usd": 34.50, "stock": 8 }
+        ]
     },
     {
         "id": "3",
         "name": "Jeans Slim Fit Dark",
-        "price_gs": 380000,
-        "price_usd": 52.00,
-        "image": "./images/jeans_dark.jpg",
-        "description": "Jeans ajustados con un estilo moderno y versátil. Perfectos para el día a día."
+        "images": [
+            "./images/jeans_dark_1.jpg",
+            "./images/jeans_dark_2.jpg",
+            "./images/jeans_dark_3.jpg"
+        ],
+        "description": "Jeans ajustados con un estilo moderno y versátil. Perfectos para el día a día.",
+        "variants": [
+            { "sku": "3A", "color": "Oscuro", "size": "30", "price_gs": 380000, "price_usd": 52.00, "stock": 10 },
+            { "sku": "3B", "color": "Oscuro", "size": "32", "price_gs": 380000, "price_usd": 52.00, "stock": 15 },
+            { "sku": "3C", "color": "Oscuro", "size": "34", "price_gs": 380000, "price_usd": 52.00, "stock": 9 }
+        ]
     },
     {
         "id": "4",
         "name": "Zapatillas Urban Style",
-        "price_gs": 450000,
-        "price_usd": 62.00,
-        "image": "./images/zapatillas_urban.jpg",
-        "description": "Zapatillas cómodas y con un diseño que define tu estilo urbano. ¡Imprescindibles en tu armario!"
+        "images": [
+            "./images/zapatillas_urban_1.jpg",
+            "./images/zapatillas_urban_2.jpg",
+            "./images/zapatillas_urban_3.jpg"
+        ],
+        "description": "Zapatillas cómodas y con un diseño que define tu estilo urbano. ¡Imprescindibles en tu armario!",
+        "variants": [
+            { "sku": "4A", "color": "Gris", "size": "39", "price_gs": 450000, "price_usd": 62.00, "stock": 8 },
+            { "sku": "4B", "color": "Gris", "size": "41", "price_gs": 450000, "price_usd": 62.00, "stock": 11 },
+            { "sku": "4C", "color": "Gris", "size": "43", "price_gs": 450000, "price_usd": 62.00, "stock": 6 }
+        ]
     }
 ]

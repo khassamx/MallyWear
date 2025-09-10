@@ -1,5 +1,3 @@
-// /modules/ui.js
-
 export function showStatusMessage(message, type) {
     const statusMessageElement = document.getElementById('status-message');
     statusMessageElement.textContent = message;
@@ -8,5 +6,5 @@ export function showStatusMessage(message, type) {
 
     setTimeout(() => {
         statusMessageElement.style.display = 'none';
-    }, 5000); // El mensaje desaparece después de 5 segundos
+    }, 5000);
 }

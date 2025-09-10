@@ -1,6 +1,4 @@
-// /modules/cart.js
-
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 export function addToCart(product) {
     const existingProduct = cart.find(item => item.id === product.id);
@@ -9,8 +7,19 @@ export function addToCart(product) {
     } else {
         cart.push({ ...product, quantity: 1 });
     }
+    saveCart();
+    updateCartCount();
+}
+
+export function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
     updateCartCount();
     renderCartItems();
+}
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 export function updateCartCount() {
@@ -41,10 +50,19 @@ export function renderCartItems() {
                 </div>
             </div>
             <p>Gs. ${(item.price_gs * item.quantity).toLocaleString('es-PY')}</p>
+            <button class="remove-btn" data-id="${item.id}">&times;</button>
         `;
         cartItemsContainer.appendChild(itemDiv);
     });
-    
+
+    const removeButtons = document.querySelectorAll('.remove-btn');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const productId = event.target.dataset.id;
+            removeFromCart(productId);
+        });
+    });
+
     document.getElementById('cart-total-price').textContent = `Gs. ${calculateCartTotal().toLocaleString('es-PY')}`;
 }
 

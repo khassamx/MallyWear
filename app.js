@@ -3,11 +3,27 @@ import { addToCart, getCart, renderCartItems, calculateCartTotal, removeFromCart
 import { showStatusMessage } from './modules/ui.js';
 
 let allProducts = [];
+let slideIndex = 0; // Para el carrusel de imágenes
 
+// Función para el carrusel de la sección hero
+function showSlides() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+    slides[slideIndex - 1].classList.add('active');
+    setTimeout(showSlides, 5000); // Cambia de imagen cada 5 segundos
+}
+
+// Renderiza los productos en la galería
 function renderProducts(productsToRender) {
     const productListElement = document.getElementById('product-list');
-    productListElement.innerHTML = '';
-    
+    productListElement.innerHTML = ''; // Limpia la lista existente
+
     if (productsToRender.length === 0) {
         productListElement.innerHTML = '<p class="no-results">No se encontraron productos.</p>';
         return;
@@ -39,7 +55,7 @@ function renderProducts(productsToRender) {
         `;
         productListElement.appendChild(productDiv);
 
-        // Lógica de la galería de imágenes
+        // Lógica de la galería de imágenes del producto
         const thumbnails = productDiv.querySelectorAll('.gallery-thumbnail');
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', (event) => {
@@ -49,12 +65,13 @@ function renderProducts(productsToRender) {
             });
         });
 
-        // Lógica de actualización de precio en tiempo real
+        // Establece el precio inicial del producto según la primera variante
         const initialVariant = product.variants.find(v => v.color === product.variants[0].color && v.size === product.variants[0].size);
         document.getElementById(`precio-${product.id}`).textContent = `Gs. ${initialVariant.price_gs.toLocaleString('es-PY')}`;
     });
 }
 
+// Actualiza el precio de un producto cuando se cambian las opciones (color/talla)
 function updatePrice(productId) {
     const productElement = document.getElementById(`precio-${productId}`).closest('.producto');
     const selectedColor = productElement.querySelector('.color-select').value;
@@ -68,19 +85,24 @@ function updatePrice(productId) {
     }
 }
 
+// Lógica que se ejecuta cuando el DOM está completamente cargado
 document.addEventListener('DOMContentLoaded', async () => {
-    allProducts = await getProducts();
-    renderProducts(allProducts);
-    updateCartCount();
+    allProducts = await getProducts(); // Carga todos los productos
+    renderProducts(allProducts);      // Renderiza los productos en la página
+    updateCartCount();                // Actualiza el contador del carrito
+    showSlides();                     // Inicia el carrusel de la sección hero
 
+    // Referencias a elementos del DOM
     const cartButton = document.getElementById('cart-btn');
     const cartModal = document.getElementById('cart-modal');
     const closeModalBtn = document.querySelector('.close-btn');
     const contactForm = document.getElementById('contact-form');
     const ctaButton = document.querySelector('.cta-button');
     const searchInput = document.getElementById('search-input');
+    const whatsappBtn = document.getElementById('whatsapp-link'); // Botón flotante de WhatsApp
+    const ownerPhoneNumber = '595981123456'; // Número de WhatsApp del dueño de la tienda
 
-    // Lógica del buscador
+    // Lógica del buscador de productos
     searchInput.addEventListener('keyup', (event) => {
         const query = event.target.value.toLowerCase();
         const filteredProducts = allProducts.filter(product => 
@@ -91,7 +113,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderProducts(filteredProducts);
     });
 
-    // Lógica para actualizar el precio
+    // Lógica para actualizar el precio del producto al cambiar color/talla
     document.addEventListener('change', (event) => {
         if (event.target.classList.contains('color-select') || event.target.classList.contains('size-select')) {
             const productId = event.target.closest('.producto').querySelector('.add-to-cart').dataset.id;
@@ -99,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Lógica del carrito y botones
+    // Lógica para añadir productos al carrito
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('add-to-cart')) {
             const productId = event.target.dataset.id;
@@ -116,10 +138,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     name: `${productData.name} - ${variant.color} (${variant.size})`,
                     price_gs: variant.price_gs,
                     price_usd: variant.price_usd,
-                    image: productData.images[0]
+                    image: productData.images[0] // Usamos la primera imagen del producto
                 });
                 showStatusMessage(`¡${productData.name} (${variant.color}, ${variant.size}) añadido al carrito! 🎉`, 'success');
-            } else if (variant.stock === 0) {
+            } else if (variant && variant.stock === 0) {
                 showStatusMessage('Lo sentimos, esta variante está agotada. 😔', 'error');
             } else {
                 showStatusMessage('Por favor, selecciona una talla y un color válidos.', 'error');
@@ -127,21 +149,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    // Abrir el modal del carrito
     cartButton.addEventListener('click', () => {
-        renderCartItems();
+        renderCartItems(); // Asegura que el carrito se muestre actualizado
         cartModal.style.display = 'block';
     });
     
+    // Cerrar el modal del carrito
     closeModalBtn.addEventListener('click', () => {
         cartModal.style.display = 'none';
     });
     
+    // Cerrar el modal del carrito haciendo clic fuera de él
     window.addEventListener('click', (event) => {
         if (event.target === cartModal) {
             cartModal.style.display = 'none';
         }
     });
 
+    // Botón "Finalizar Pedido" del carrito
     const checkoutBtn = document.getElementById('checkout-btn');
     checkoutBtn.addEventListener('click', () => {
         if (getCart().length === 0) {
@@ -149,15 +175,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
         cartModal.style.display = 'none';
-        document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' }); // Desplaza a la sección de contacto
     });
 
+    // Manejo del envío del formulario de contacto (para encomienda)
     contactForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        
-        showStatusMessage('Verificando ubicación...', 'info');
+        event.preventDefault(); // Evita el envío tradicional del formulario
+
+        showStatusMessage('Verificando ubicación y preparando pedido...', 'info');
         
         try {
+            // Verifica la ubicación (solo permite pedidos desde Paraguay)
             const response = await fetch('https://ipapi.co/json/');
             const data = await response.json();
             const countryCode = data.country_code;
@@ -167,43 +195,61 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            const formData = new FormData(contactForm);
-            const pedido = {
-                nombre: formData.get('name'),
-                email: formData.get('email'),
-                telefono: formData.get('phone'),
-                detalles: formData.get('message'),
-                productos: getCart().map(item => ({
-                    id: item.id,
-                    name: item.name,
-                    quantity: item.quantity,
-                    price_gs: item.price_gs
-                })),
-                total_gs: calculateCartTotal()
-            };
+            const formData = new FormData(contactForm); // Recoge los datos del formulario
 
-            console.log('--- Nuevo Pedido ---');
-            console.log(pedido);
+            // Crea el mensaje para WhatsApp con todos los detalles del pedido
+            const productosEnCarrito = getCart().map(item => `  - ${item.name} (x${item.quantity}) - Gs. ${item.price_gs.toLocaleString('es-PY')}`).join('\n');
+            const totalPedido = calculateCartTotal().toLocaleString('es-PY');
 
-            showStatusMessage('¡Tu pedido ha sido enviado con éxito! Nos pondremos en contacto contigo lo más rápido posible. El envío puede tardar entre 2 y 5 días. 🚀', 'success');
-            
-            contactForm.reset();
-            localStorage.clear();
+            const whatsappMessage = `*¡Nuevo Pedido para Encomienda en MallyWear!*%0A%0A` +
+                                  `*Datos del Cliente:*%0A` +
+                                  `*Nombre:* ${formData.get('Nombre')}%0A` +
+                                  `*Cédula:* ${formData.get('Cedula')}%0A` +
+                                  `*Teléfono:* ${formData.get('Telefono')}%0A` +
+                                  `*Ciudad:* ${formData.get('Ciudad')}%0A` +
+                                  `*Región/Departamento:* ${formData.get('Region')}%0A` +
+                                  `*Dirección:* ${formData.get('Direccion')}%0A` +
+                                  (formData.get('Mensaje') ? `*Mensaje adicional:* ${formData.get('Mensaje')}%0A%0A` : '%0A') +
+                                  `*Productos Solicitados:*%0A` +
+                                  `${productosEnCarrito}%0A%0A` +
+                                  `*TOTAL DEL PEDIDO:* Gs. ${totalPedido}%0A%0A` +
+                                  `_Por favor, contacta al cliente para coordinar el pago y envío._`;
+
+            // Abre WhatsApp con el mensaje pre-escrito (para el dueño de la tienda)
+            window.open(`https://wa.me/${ownerPhoneNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+
+            // Envía los datos a Formspree (para que lleguen al correo electrónico del dueño)
+            // Se realiza con un fetch para que la página no se recargue completamente.
+            const formspreeUrl = contactForm.action; // La URL de Formspree está en el 'action' del formulario
+            const formspreeResponse = await fetch(formspreeUrl, {
+                method: contactForm.method, // POST
+                body: formData,
+                headers: {
+                    'Accept': 'application/json' // Importante para Formspree
+                }
+            });
+
+            if (formspreeResponse.ok) {
+                showStatusMessage('¡Tu pedido ha sido enviado con éxito! Revisa tu WhatsApp y correo electrónico. 🚀', 'success');
+                contactForm.reset();     // Limpia el formulario
+                localStorage.clear();    // Limpia el carrito del cliente
+                updateCartCount();       // Actualiza el contador del carrito a 0
+            } else {
+                showStatusMessage('Hubo un error al enviar el pedido por correo. Por favor, inténtalo de nuevo.', 'error');
+            }
             
         } catch (error) {
-            console.error('Error al verificar la ubicación:', error);
-            showStatusMessage('Hubo un problema al verificar tu ubicación. Por favor, asegúrate de tener la ubicación activada en tu navegador.', 'error');
+            console.error('Error en el proceso de pedido:', error);
+            showStatusMessage('Hubo un problema al procesar tu pedido. Por favor, asegúrate de tener la ubicación activada en tu navegador e inténtalo de nuevo.', 'error');
         }
     });
 
+    // Botón "Ver Colección" del carrusel para desplazar a productos
     ctaButton.addEventListener('click', () => {
         document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Código de WhatsApp
-    const whatsappLink = document.getElementById('whatsapp-link');
-    const phoneNumber = '595981123456'; 
-    const message = encodeURIComponent('Hola MallyWear, ¡estoy interesado en un producto y me gustaría hacer una consulta!');
-    whatsappLink.href = `https://wa.me/${phoneNumber}?text=${message}`;
-
+    // Configuración del botón flotante de WhatsApp (para consultas generales)
+    const initialWhatsappMessage = encodeURIComponent('Hola MallyWear, ¡estoy interesado en un producto y me gustaría hacer una consulta!');
+    whatsappBtn.href = `https://wa.me/${ownerPhoneNumber}?text=${initialWhatsappMessage}`;
 });

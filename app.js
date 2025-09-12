@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const ctaButton = document.querySelector('.cta-button');
     const searchInput = document.getElementById('search-input');
     const whatsappBtn = document.getElementById('whatsapp-link'); // Botón flotante de WhatsApp
-    const ownerPhoneNumber = '595981123456'; // Número de WhatsApp del dueño de la tienda
+    const ownerPhoneNumber = '595984869105'; // Número de WhatsApp del dueño de la tienda
 
     // Lógica del buscador de productos
     searchInput.addEventListener('keyup', (event) => {

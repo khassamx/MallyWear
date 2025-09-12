@@ -22,10 +22,11 @@
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Descubre tu estilo único</h1>
-            <p>La mejor moda para ti, con calidad y diseño incomparables.</p>
-            <button class="cta-button">Ver Colección</button>
+        <section id="hero-carousel" class="hero-carousel">
+            <div class="carousel-container">
+                </div>
+            <div class="carousel-dots">
+                </div>
         </section>
 
         <section class="search-section">
@@ -52,13 +53,19 @@
         </div>
 
         <section id="contacto" class="contacto">
-            <h2>Contáctanos para pedidos</h2>
-            <form id="contact-form">
-                <input type="text" id="name" placeholder="Tu Nombre" required>
-                <input type="email" id="email" placeholder="Tu Email" required>
-                <input type="tel" id="phone" placeholder="Tu Teléfono" required>
-                <textarea id="message" placeholder="Mensaje o detalles del pedido" required></textarea>
-                <button type="submit">Enviar Pedido</button>
+            <h2>Contáctanos para tu pedido</h2>
+            <p>Por favor, completa los datos para la encomienda.</p>
+            <form id="contact-form" action="https://formspree.io/f/tu_codigo_formspree" method="POST">
+                <input type="text" id="name" placeholder="Tu Nombre Completo" name="Nombre" required>
+                <input type="tel" id="cedula" placeholder="Número de Cédula" name="Cedula" required>
+                <input type="tel" id="phone" placeholder="Número de Teléfono" name="Telefono" required>
+                <input type="text" id="city" placeholder="Ciudad" name="Ciudad" required>
+                <input type="text" id="address" placeholder="Dirección para Envío" name="Direccion" required>
+                <textarea id="message" placeholder="Mensaje adicional sobre el pedido..." name="Mensaje"></textarea>
+                
+                <div id="order-details-input"></div>
+
+                <button type="submit">Enviar Pedido por Encomienda</button>
             </form>
             <div id="status-message" class="status-message"></div>
         </section>

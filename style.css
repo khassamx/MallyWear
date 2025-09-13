@@ -121,62 +121,8 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(255,255,255,0.2);
 }
 
-/* Nueva sección de catálogos y galerías */
-.catalog-section {
-    padding: 4rem 2rem;
-    text-align: center;
-    background-color: #0d0d0d;
-}
-
-.catalog-video-player {
-    width: 100%;
-    max-width: 800px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    margin-bottom: 2rem;
-}
-
-.category-showcase {
-    padding: 4rem 2rem;
-    text-align: center;
-    background-color: #1a1a1a;
-}
-
-.showcase-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.showcase-item {
-    background-color: #0d0d0d;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.showcase-item:hover {
-    transform: translateY(-5px);
-}
-
-.showcase-item img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-}
-
-.showcase-item h3 {
-    padding: 1.5rem;
-    margin: 0;
-    font-size: 1.5rem;
-    color: #ffffff;
-}
-
-/* Sección de Búsqueda y Categorías */
-.search-section {
+/* Sección de Búsqueda y Filtros de Categoría */
+.search-and-filter-section {
     padding: 2rem;
     background-color: #1a1a1a;
     text-align: center;
@@ -192,6 +138,7 @@ nav a:hover {
     background-color: #0d0d0d;
     color: #f0f0f0;
     transition: border-color 0.3s;
+    margin-bottom: 1rem;
 }
 
 #search-input:focus {
@@ -200,8 +147,10 @@ nav a:hover {
 }
 
 .category-buttons {
-    text-align: center;
-    padding: 1rem 0 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .category-btn {
@@ -209,7 +158,6 @@ nav a:hover {
     color: #fff;
     border: 1px solid #555;
     padding: 0.8rem 1.5rem;
-    margin: 0 0.5rem;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -269,6 +217,12 @@ nav a:hover {
     font-size: 1.5rem;
     color: #ffffff;
     margin-bottom: 0.5rem;
+}
+
+.producto p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 1rem;
 }
 
 .precio {
@@ -352,325 +306,3 @@ nav a:hover {
 .cart-item-info {
     display: flex;
     align-items: center;
-    gap: 1rem;
-}
-
-.cart-item-info img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.cart-item-info h4 {
-    margin: 0;
-}
-
-.cart-item .remove-btn {
-    background: none;
-    border: none;
-    color: #ff4d4d;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: color 0.3s;
-}
-
-.cart-item .remove-btn:hover {
-    color: #ff0000;
-}
-
-.cart-total {
-    text-align: right;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-top: 1rem;
-}
-
-/* Sección de Contacto y Pago */
-.contacto {
-    background-color: #0d0d0d;
-    padding: 4rem 2rem;
-    text-align: center;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
-}
-
-.contacto h2 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    color: #ffffff;
-    letter-spacing: 2px;
-}
-
-.contacto .subtitle {
-    margin-bottom: 2rem;
-    font-style: italic;
-    color: #aaa;
-}
-
-.payment-method-container {
-    background-color: #1a1a1a;
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-}
-
-.payment-method {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.payment-method i {
-    font-size: 2rem;
-    color: #ffffff;
-}
-
-.payment-method h4 {
-    margin: 0;
-    font-size: 1.3rem;
-}
-
-.payment-method p {
-    font-size: 0.9rem;
-    color: #ccc;
-    margin: 0;
-}
-
-.contacto form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.contacto input, .contacto textarea, .contacto select {
-    padding: 1rem;
-    border: 1px solid #444;
-    border-radius: 8px;
-    background-color: #222;
-    color: #f0f0f0;
-    font-size: 1rem;
-    transition: border-color 0.3s ease-in-out;
-}
-
-.contacto input:focus, .contacto textarea:focus, .contacto select:focus {
-    border-color: #ffffff;
-    outline: none;
-}
-
-.contacto textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.submit-button {
-    background-color: #ffffff;
-    color: #0d0d0d;
-    padding: 1rem 3rem;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    letter-spacing: 1px;
-}
-
-.submit-button:hover {
-    background-color: #cccccc;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
-}
-
-.status-message {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 8px;
-    display: none;
-    font-weight: 600;
-}
-
-.status-message.success {
-    background-color: #28a745;
-    color: #fff;
-}
-
-.status-message.error {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-/* Sección de Redes Sociales */
-.redes-sociales {
-    padding: 2rem;
-    text-align: center;
-    background-color: #1a1a1a;
-}
-
-.redes-sociales h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.social-links a {
-    color: #ffffff;
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-}
-
-.social-links a:hover {
-    color: #cccccc;
-}
-
-.social-links a .fab {
-    margin-right: 0.5rem;
-}
-
-/* Pie de página (Footer) */
-footer {
-    background-color: #0d0d0d;
-    color: #cccccc;
-    text-align: center;
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
-}
-
-/* Botón de WhatsApp flotante */
-.whatsapp-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: #25D366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    z-index: 999;
-    transition: transform 0.3s ease;
-}
-
-.whatsapp-btn:hover {
-    transform: scale(1.1);
-}
-
-/* Estilos para la galería de imágenes del producto */
-.product-main-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    cursor: pointer;
-}
-
-.product-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 1rem;
-}
-
-.gallery-thumbnail {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color 0.3s ease;
-}
-
-.gallery-thumbnail:hover {
-    border-color: #ffffff;
-}
-
-.product-options {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.product-options select {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 5px;
-    background-color: #222;
-    color: #f0f0f0;
-    border: 1px solid #444;
-}
-
-/* Diseño Adaptativo (Responsive Design) */
-@media (max-width: 768px) {
-    /* ... (resto del CSS responsive) ... */
-    header {
-        flex-direction: column;
-        text-align: center;
-        padding: 1rem;
-    }
-    .logo {
-        margin-bottom: 1rem;
-    }
-    nav ul {
-        flex-direction: row;
-        gap: 0.5rem;
-        margin-top: 0;
-        justify-content: center;
-    }
-    nav a {
-        font-size: 0.9rem;
-        padding: 0.5rem;
-    }
-
-    /* Ajustes para la sección principal */
-    .hero-video h1 {
-        font-size: 2.5rem;
-    }
-    .hero-video p {
-        font-size: 1.1rem;
-        padding: 0 1rem;
-    }
-    .cta-button {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-    }
-    .productos {
-        padding: 2rem 1rem;
-    }
-    .productos h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-    .galeria-productos {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-    }
-    .producto {
-        width: 90%;
-        margin-bottom: 1rem;
-    }
-    .contacto h2 {
-        font-size: 2rem;
-    }
-    .contacto form {
-        width: 100%;
-        padding: 0 1rem;
-    }
-}

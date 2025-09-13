@@ -427,19 +427,23 @@ footer {
 
 /* Diseño Adaptativo (Responsive Design) */
 @media (max-width: 768px) {
+    /* Mantenemos el header y nav horizontal para que se vea igual que en el escritorio */
     header {
-        flex-direction: column;
-        text-align: center;
-        padding: 1rem;
+        flex-direction: row;
+        text-align: left;
     }
     nav ul {
-        flex-direction: column;
+        flex-direction: row;
         gap: 1rem;
-        margin-top: 1rem;
+        margin-top: 0;
     }
-    .logo {
-        margin-bottom: 0.5rem;
+
+    /* Reducimos el tamaño de la fuente para que quepa todo */
+    nav a {
+        font-size: 0.9rem;
     }
+
+    /* Ajustes para el resto del sitio */
     .hero-static h1 {
         font-size: 2.5rem;
     }

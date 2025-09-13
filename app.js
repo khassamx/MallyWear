@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const ctaButton = document.querySelector('.cta-button');
     const searchInput = document.getElementById('search-input');
     const whatsappBtn = document.getElementById('whatsapp-link'); // Botón flotante de WhatsApp
+    const categoryButtons = document.querySelectorAll('.category-btn');
     const ownerPhoneNumber = '595984869105'; // Número de WhatsApp del dueño de la tienda
 
     // Lógica del buscador de productos
@@ -99,6 +100,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             product.variants.some(v => v.color.toLowerCase().includes(query) || v.size.toLowerCase().includes(query))
         );
         renderProducts(filteredProducts);
+    });
+
+    // Lógica de filtrado por categoría
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const category = event.target.dataset.category;
+            
+            // Elimina la clase 'active' de todos los botones
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            // Añade la clase 'active' al botón clickeado
+            event.target.classList.add('active');
+
+            if (category === 'all') {
+                renderProducts(allProducts);
+            } else {
+                const filteredProducts = allProducts.filter(product => product.category === category);
+                renderProducts(filteredProducts);
+            }
+        });
     });
 
     // Lógica para actualizar el precio del producto al cambiar color/talla

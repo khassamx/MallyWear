@@ -8,6 +8,7 @@ body {
     line-height: 1.6;
 }
 
+/* Encabezado */
 header {
     background-color: #0d0d0d;
     padding: 1rem 2rem;
@@ -49,7 +50,7 @@ nav a:hover {
     color: #ffffff;
 }
 
-/* Sección de Imagen Principal Estática */
+/* Sección de Imagen Principal */
 .hero-static {
     width: 100%;
     min-height: 60vh;
@@ -425,61 +426,6 @@ footer {
     box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
 }
 
-/* Diseño Adaptativo (Responsive Design) */
-@media (max-width: 768px) {
-    /* Mantenemos el header y nav horizontal para que se vea igual que en el escritorio */
-    header {
-        flex-direction: row;
-        text-align: left;
-    }
-    nav ul {
-        flex-direction: row;
-        gap: 1rem;
-        margin-top: 0;
-    }
-
-    /* Reducimos el tamaño de la fuente para que quepa todo */
-    nav a {
-        font-size: 0.9rem;
-    }
-
-    /* Ajustes para el resto del sitio */
-    .hero-static h1 {
-        font-size: 2.5rem;
-    }
-    .hero-static p {
-        font-size: 1.1rem;
-        padding: 0 1rem;
-    }
-    .cta-button {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-    }
-    .productos {
-        padding: 2rem 1rem;
-    }
-    .productos h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-    .galeria-productos {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-    }
-    .producto {
-        width: 90%;
-        margin-bottom: 1rem;
-    }
-    .contacto h2 {
-        font-size: 2rem;
-    }
-    .contacto form {
-        width: 100%;
-        padding: 0 1rem;
-    }
-}
-
 /* Botón de WhatsApp flotante */
 .whatsapp-btn {
     position: fixed;
@@ -532,4 +478,63 @@ footer {
 
 .gallery-thumbnail:hover {
     border-color: #ffffff;
+}
+
+/* Diseño Adaptativo (Responsive Design) */
+@media (max-width: 768px) {
+    /* Ajustes para el encabezado en móviles */
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+    .logo {
+        margin-bottom: 1rem; /* Añade espacio entre el logo y la navegación */
+    }
+    nav ul {
+        flex-direction: row; /* Mantiene la navegación en una sola fila */
+        gap: 0.5rem;
+        margin-top: 0;
+        justify-content: center;
+    }
+    nav a {
+        font-size: 0.9rem; /* Reduce el tamaño de la fuente para que quepa */
+        padding: 0.5rem; /* Añade un poco de espacio para hacer clic más fácil */
+    }
+
+    /* Ajustes para la sección principal */
+    .hero-static h1 {
+        font-size: 2.5rem;
+    }
+    .hero-static p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+    .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    .productos {
+        padding: 2rem 1rem;
+    }
+    .productos h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    .galeria-productos {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    .producto {
+        width: 90%;
+        margin-bottom: 1rem;
+    }
+    .contacto h2 {
+        font-size: 2rem;
+    }
+    .contacto form {
+        width: 100%;
+        padding: 0 1rem;
+    }
 }

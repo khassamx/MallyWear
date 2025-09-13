@@ -4,10 +4,10 @@ import { showStatusMessage } from './modules/ui.js';
 
 let allProducts = [];
 
-// Función para renderizar productos, ahora puede filtrar por categoría
+// Función para renderizar productos
 function renderProducts(productsToRender) {
     const productListElement = document.getElementById('product-list');
-    productListElement.innerHTML = ''; // Limpia la lista existente
+    productListElement.innerHTML = '';
 
     if (productsToRender.length === 0) {
         productListElement.innerHTML = '<p class="no-results">No se encontraron productos.</p>';
@@ -25,7 +25,8 @@ function renderProducts(productsToRender) {
                 `).join('')}
             </div>
             <h3>${product.name}</h3>
-            <div class="opciones">
+            <p>${product.description}</p>
+            <div class="product-options">
                 ${product.variants[0].color ? `
                     <label for="color-${product.id}">Color:</label>
                     <select id="color-${product.id}" class="color-select">
@@ -44,7 +45,6 @@ function renderProducts(productsToRender) {
         `;
         productListElement.appendChild(productDiv);
 
-        // Lógica de la galería de imágenes del producto
         const thumbnails = productDiv.querySelectorAll('.gallery-thumbnail');
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', (event) => {
@@ -54,17 +54,38 @@ function renderProducts(productsToRender) {
             });
         });
 
-        // Establece el precio inicial del producto según la primera variante
-        const initialVariant = product.variants.find(v => v.color === product.variants[0].color && v.size === product.variants[0].size);
+        // Establece el precio inicial
+        const initialVariant = product.variants[0];
         document.getElementById(`precio-${product.id}`).textContent = `Gs. ${initialVariant.price_gs.toLocaleString('es-PY')}`;
+    });
+}
+
+// Función para renderizar las galerías de showcase
+function renderShowcaseGalleries() {
+    const showcaseContainer = document.querySelector('.showcase-gallery');
+    showcaseContainer.innerHTML = '';
+
+    const categories = [...new Set(allProducts.map(p => p.category))];
+    
+    categories.forEach(category => {
+        const product = allProducts.find(p => p.category === category);
+        if (product) {
+            const showcaseItem = document.createElement('div');
+            showcaseItem.className = 'showcase-item';
+            showcaseItem.innerHTML = `
+                <img src="${product.images[0]}" alt="Colección ${category}">
+                <h3>Colección ${category}</h3>
+            `;
+            showcaseContainer.appendChild(showcaseItem);
+        }
     });
 }
 
 // Actualiza el precio de un producto cuando se cambian las opciones (color/talla)
 function updatePrice(productId) {
     const productElement = document.getElementById(`precio-${productId}`).closest('.producto');
-    const selectedColor = productElement.querySelector('.color-select').value;
-    const selectedSize = productElement.querySelector('.size-select').value;
+    const selectedColor = productElement.querySelector('.color-select')?.value;
+    const selectedSize = productElement.querySelector('.size-select')?.value;
 
     const productData = allProducts.find(p => p.id === productId);
     const variant = productData.variants.find(v => v.color === selectedColor && v.size === selectedSize);
@@ -76,28 +97,29 @@ function updatePrice(productId) {
 
 // Lógica que se ejecuta cuando el DOM está completamente cargado
 document.addEventListener('DOMContentLoaded', async () => {
-    allProducts = await getProducts(); // Carga todos los productos
-    renderProducts(allProducts);      // Renderiza los productos en la página
-    updateCartCount();                // Actualiza el contador del carrito
+    allProducts = await getProducts();
+    renderProducts(allProducts);
+    renderShowcaseGalleries();
+    updateCartCount();
 
-    // Referencias a elementos del DOM
     const cartButton = document.getElementById('cart-btn');
     const cartModal = document.getElementById('cart-modal');
     const closeModalBtn = document.querySelector('.close-btn');
     const contactForm = document.getElementById('contact-form');
     const ctaButton = document.querySelector('.cta-button');
     const searchInput = document.getElementById('search-input');
-    const whatsappBtn = document.getElementById('whatsapp-link'); // Botón flotante de WhatsApp
+    const whatsappBtn = document.getElementById('whatsapp-link');
     const categoryButtons = document.querySelectorAll('.category-btn');
-    const ownerPhoneNumber = '595984869105'; // Número de WhatsApp del dueño de la tienda
+    const ownerPhoneNumber = '595984869105';
 
-    // Lógica del buscador de productos
+    // Lógica del buscador de productos (mejorado)
     searchInput.addEventListener('keyup', (event) => {
         const query = event.target.value.toLowerCase();
         const filteredProducts = allProducts.filter(product => 
             product.name.toLowerCase().includes(query) || 
             product.description.toLowerCase().includes(query) ||
-            product.variants.some(v => v.color.toLowerCase().includes(query) || v.size.toLowerCase().includes(query))
+            product.category.toLowerCase().includes(query) ||
+            product.variants.some(v => v.color.toLowerCase().includes(query))
         );
         renderProducts(filteredProducts);
     });
@@ -107,9 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         button.addEventListener('click', (event) => {
             const category = event.target.dataset.category;
             
-            // Elimina la clase 'active' de todos los botones
             categoryButtons.forEach(btn => btn.classList.remove('active'));
-            // Añade la clase 'active' al botón clickeado
             event.target.classList.add('active');
 
             if (category === 'all') {
@@ -121,7 +141,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
-    // Lógica para actualizar el precio del producto al cambiar color/talla
+    // Lógica para actualizar el precio del producto al cambiar opciones
     document.addEventListener('change', (event) => {
         if (event.target.classList.contains('color-select') || event.target.classList.contains('size-select')) {
             const productId = event.target.closest('.producto').querySelector('.add-to-cart').dataset.id;
@@ -134,21 +154,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (event.target.classList.contains('add-to-cart')) {
             const productId = event.target.dataset.id;
             const productElement = event.target.closest('.producto');
-            const selectedColor = productElement.querySelector('.color-select').value;
-            const selectedSize = productElement.querySelector('.size-select').value;
-            
+            const selectedColor = productElement.querySelector('.color-select')?.value;
+            const selectedSize = productElement.querySelector('.size-select')?.value;
+
             const productData = allProducts.find(p => p.id === productId);
             const variant = productData.variants.find(v => v.color === selectedColor && v.size === selectedSize);
 
             if (variant && variant.stock > 0) {
                 addToCart({
                     id: variant.sku,
-                    name: `${productData.name} - ${variant.color} (${variant.size})`,
+                    name: `${productData.name} - ${variant.color ? `(${variant.color})` : ''} ${variant.size ? `(${variant.size})` : ''}`,
                     price_gs: variant.price_gs,
                     price_usd: variant.price_usd,
-                    image: productData.images[0] // Usamos la primera imagen del producto
+                    image: productData.images[0]
                 });
-                showStatusMessage(`¡${productData.name} (${variant.color}, ${variant.size}) añadido al carrito! 🎉`, 'success');
+                showStatusMessage(`¡${productData.name} añadido al carrito! 🎉`, 'success');
             } else if (variant && variant.stock === 0) {
                 showStatusMessage('Lo sentimos, esta variante está agotada. 😔', 'error');
             } else {
@@ -159,7 +179,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Abrir el modal del carrito
     cartButton.addEventListener('click', () => {
-        renderCartItems(); // Asegura que el carrito se muestre actualizado
+        renderCartItems();
         cartModal.style.display = 'block';
     });
     
@@ -179,21 +199,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     const checkoutBtn = document.getElementById('checkout-btn');
     checkoutBtn.addEventListener('click', () => {
         if (getCart().length === 0) {
-            alert('Tu carrito está vacío. Añade productos antes de finalizar.');
+            showStatusMessage('Tu carrito está vacío. Añade productos antes de finalizar.', 'error');
             return;
         }
         cartModal.style.display = 'none';
-        document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' }); // Desplaza a la sección de contacto
+        document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
     });
 
     // Manejo del envío del formulario de contacto (para encomienda)
     contactForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Evita el envío tradicional del formulario
+        event.preventDefault();
 
         showStatusMessage('Verificando ubicación y preparando pedido...', 'info');
         
         try {
-            // Verifica la ubicación (solo permite pedidos desde Paraguay)
             const response = await fetch('https://ipapi.co/json/');
             const data = await response.json();
             const countryCode = data.country_code;
@@ -203,9 +222,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            const formData = new FormData(contactForm); // Recoge los datos del formulario
-
-            // Crea el mensaje para WhatsApp con todos los detalles del pedido
+            const formData = new FormData(contactForm);
             const productosEnCarrito = getCart().map(item => `  - ${item.name} (x${item.quantity}) - Gs. ${item.price_gs.toLocaleString('es-PY')}`).join('\n');
             const totalPedido = calculateCartTotal().toLocaleString('es-PY');
 
@@ -221,43 +238,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                                   `*Productos Solicitados:*%0A` +
                                   `${productosEnCarrito}%0A%0A` +
                                   `*TOTAL DEL PEDIDO:* Gs. ${totalPedido}%0A%0A` +
-                                  `_Por favor, contacta al cliente para coordinar el pago y envío._`;
+                                  `*Nota:* El cliente será contactado en breve. El tiempo de entrega estimado es de 1 a 5 días hábiles a través de encomienda.`
 
-            // Abre WhatsApp con el mensaje pre-escrito (para el dueño de la tienda)
             window.open(`https://wa.me/${ownerPhoneNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
 
-            // Envía los datos a Formspree (para que lleguen al correo electrónico del dueño)
-            // Se realiza con un fetch para que la página no se recargue completamente.
-            const formspreeUrl = contactForm.action; // La URL de Formspree está en el 'action' del formulario
-            const formspreeResponse = await fetch(formspreeUrl, {
-                method: contactForm.method, // POST
-                body: formData,
-                headers: {
-                    'Accept': 'application/json' // Importante para Formspree
-                }
-            });
-
-            if (formspreeResponse.ok) {
-                showStatusMessage('¡Tu pedido ha sido enviado con éxito! Revisa tu WhatsApp y correo electrónico. 🚀', 'success');
-                contactForm.reset();     // Limpia el formulario
-                localStorage.clear();    // Limpia el carrito del cliente
-                updateCartCount();       // Actualiza el contador del carrito a 0
-            } else {
-                showStatusMessage('Hubo un error al enviar el pedido por correo. Por favor, inténtalo de nuevo.', 'error');
-            }
-            
+            showStatusMessage('¡Tu pedido ha sido enviado a WhatsApp! Te contactaremos en breve para confirmar. 🚀', 'success');
+            contactForm.reset();
+            localStorage.clear();
+            updateCartCount();
         } catch (error) {
             console.error('Error en el proceso de pedido:', error);
             showStatusMessage('Hubo un problema al procesar tu pedido. Por favor, asegúrate de tener la ubicación activada en tu navegador e inténtalo de nuevo.', 'error');
         }
     });
 
-    // Botón "Ver Colección" del carrusel para desplazar a productos
     ctaButton.addEventListener('click', () => {
         document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Configuración del botón flotante de WhatsApp (para consultas generales)
     const initialWhatsappMessage = encodeURIComponent('Hola MallyWear, ¡estoy interesado en un producto y me gustaría hacer una consulta!');
     whatsappBtn.href = `https://wa.me/${ownerPhoneNumber}?text=${initialWhatsappMessage}`;
 });

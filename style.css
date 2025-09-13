@@ -1,5 +1,4 @@
 /* --- Estilos Generales --- */
-/* Estos estilos son la base de tu diseño de "modo ordenador" que se aplicará en todas las pantallas. */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -603,10 +602,7 @@ footer {
 }
 
 /* --- AJUSTES PARA PANTALLAS MÁS PEQUEÑAS --- */
-/* Estas reglas solo se activan en pantallas de 768px de ancho o menos. */
-/* Hacen ajustes sutiles para que el diseño de escritorio se vea bien en móviles. */
 @media (max-width: 768px) {
-    /* El encabezado se apila en una columna en lugar de estar en una fila */
     header {
         flex-direction: column;
         text-align: center;
@@ -627,7 +623,6 @@ footer {
         padding: 0.5rem;
     }
 
-    /* Reduce los tamaños de los títulos del video para que quepan bien */
     .hero-overlay h1 {
         font-size: 2.5rem;
     }
@@ -640,7 +635,6 @@ footer {
         font-size: 1rem;
     }
 
-    /* Reduce el espaciado general */
     .productos, .contacto, .redes-sociales {
         padding: 2rem 1rem;
     }
@@ -650,7 +644,6 @@ footer {
         margin-bottom: 2rem;
     }
 
-    /* Permite que las tarjetas de producto ocupen casi todo el ancho disponible */
     .producto {
         max-width: 90%;
         margin-bottom: 1rem;
@@ -664,4 +657,33 @@ footer {
     .payment-method-container {
         padding: 1rem;
     }
+
+    #tiny-character {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* --- ESTILOS DEL PERSONAJE DIMINUTO --- */
+#tiny-character {
+    position: fixed;
+    bottom: 0;
+    left: 50px; 
+    width: 60px;
+    height: 60px;
+    background-image: url('images/character_idle.png'); 
+    background-size: cover;
+    z-index: 9999; 
+    cursor: pointer;
+    transition: transform 0.1s ease-out;
+}
+
+.character-wow {
+    animation: character-pop 0.3s ease-out;
+}
+
+@keyframes character-pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }

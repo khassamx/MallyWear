@@ -60,27 +60,6 @@ function renderProducts(productsToRender) {
     });
 }
 
-// Función para renderizar las galerías de showcase
-function renderShowcaseGalleries() {
-    const showcaseContainer = document.querySelector('.showcase-gallery');
-    showcaseContainer.innerHTML = '';
-
-    const categories = [...new Set(allProducts.map(p => p.category))];
-    
-    categories.forEach(category => {
-        const product = allProducts.find(p => p.category === category);
-        if (product) {
-            const showcaseItem = document.createElement('div');
-            showcaseItem.className = 'showcase-item';
-            showcaseItem.innerHTML = `
-                <img src="${product.images[0]}" alt="Colección ${category}">
-                <h3>Colección ${category}</h3>
-            `;
-            showcaseContainer.appendChild(showcaseItem);
-        }
-    });
-}
-
 // Actualiza el precio de un producto cuando se cambian las opciones (color/talla)
 function updatePrice(productId) {
     const productElement = document.getElementById(`precio-${productId}`).closest('.producto');
@@ -99,7 +78,6 @@ function updatePrice(productId) {
 document.addEventListener('DOMContentLoaded', async () => {
     allProducts = await getProducts();
     renderProducts(allProducts);
-    renderShowcaseGalleries();
     updateCartCount();
 
     const cartButton = document.getElementById('cart-btn');
@@ -112,14 +90,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const categoryButtons = document.querySelectorAll('.category-btn');
     const ownerPhoneNumber = '595984869105';
 
-    // Lógica del buscador de productos (mejorado)
+    // Lógica del buscador de productos
     searchInput.addEventListener('keyup', (event) => {
         const query = event.target.value.toLowerCase();
         const filteredProducts = allProducts.filter(product => 
             product.name.toLowerCase().includes(query) || 
             product.description.toLowerCase().includes(query) ||
             product.category.toLowerCase().includes(query) ||
-            product.variants.some(v => v.color.toLowerCase().includes(query))
+            (product.variants && product.variants.some(v => v.color.toLowerCase().includes(query) || v.style?.toLowerCase().includes(query)))
         );
         renderProducts(filteredProducts);
     });
@@ -165,7 +143,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     id: variant.sku,
                     name: `${productData.name} - ${variant.color ? `(${variant.color})` : ''} ${variant.size ? `(${variant.size})` : ''}`,
                     price_gs: variant.price_gs,
-                    price_usd: variant.price_usd,
                     image: productData.images[0]
                 });
                 showStatusMessage(`¡${productData.name} añadido al carrito! 🎉`, 'success');
@@ -226,7 +203,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const productosEnCarrito = getCart().map(item => `  - ${item.name} (x${item.quantity}) - Gs. ${item.price_gs.toLocaleString('es-PY')}`).join('\n');
             const totalPedido = calculateCartTotal().toLocaleString('es-PY');
 
-            const whatsappMessage = `*¡Nuevo Pedido para Encomienda en MallyWear!*%0A%0A` +
+            const whatsappMessage = `*¡Nuevo Pedido en MallyWear!*%0A%0A` +
                                   `*Datos del Cliente:*%0A` +
                                   `*Nombre:* ${formData.get('Nombre')}%0A` +
                                   `*Cédula:* ${formData.get('Cedula')}%0A` +
@@ -238,11 +215,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                                   `*Productos Solicitados:*%0A` +
                                   `${productosEnCarrito}%0A%0A` +
                                   `*TOTAL DEL PEDIDO:* Gs. ${totalPedido}%0A%0A` +
-                                  `*Nota:* El cliente será contactado en breve. El tiempo de entrega estimado es de 1 a 5 días hábiles a través de encomienda.`
+                                  `*Importante:* Te contactaremos en breve para que realices el pago por transferencia bancaria o giros. Una vez confirmado, tu pedido será enviado por encomienda.`
 
             window.open(`https://wa.me/${ownerPhoneNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
 
-            showStatusMessage('¡Tu pedido ha sido enviado a WhatsApp! Te contactaremos en breve para confirmar. 🚀', 'success');
+            showStatusMessage('¡Tu pedido ha sido enviado a WhatsApp! Te contactaremos en breve para coordinar el pago. 🚀', 'success');
             contactForm.reset();
             localStorage.clear();
             updateCartCount();

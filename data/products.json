@@ -1,51 +1,142 @@
-[
-    {
-        "id": "1",
-        "name": "Zapatilla Urbana",
-        "description": "Zapatilla cómoda y con estilo para el día a día.",
-        "category": "Zapatillas",
-        "images": [
-            "./images/zapatilla-1.jpg",
-            "./images/zapatilla-2.jpg",
-            "./images/zapatilla-3.jpg"
-        ],
-        "variants": [
-            {
-                "sku": "1A",
-                "color": "Negro",
-                "size": "40",
-                "price_gs": 125000,
-                "price_usd": 18,
-                "stock": 15
-            },
-            {
-                "sku": "1B",
-                "color": "Negro",
-                "size": "42",
-                "price_gs": 125000,
-                "price_usd": 18,
-                "stock": 10
-            },
-            // ... otras variantes
-        ]
-    },
-    {
-        "id": "2",
-        "name": "Gorra de Algodón",
-        "description": "Gorra de alta calidad, perfecta para cualquier estación.",
-        "category": "Gorras",
-        "images": [
-            "./images/gorra-1.jpg"
-        ],
-        "variants": [
-            {
-                "sku": "2A",
-                "color": "Azul",
-                "size": null,
-                "price_gs": 85000,
-                "price_usd": 12,
-                "stock": 20
-            }
-        ]
-    }
-]
+export function getProducts() {
+    return [
+        {
+            id: 'remera-magic-3',
+            name: 'Remera Magic Código 3',
+            description: 'Remera de algodón con diseño exclusivo "Magic Código 3". Diseño minimalista y elegante.',
+            category: 'Remeras',
+            images: [
+                './images/magic-3-negra.png',
+                './images/magic-3-blanca.png',
+                './images/magic-3-azul.png'
+            ],
+            variants: [
+                {
+                    sku: 'remera-magic-3-negro',
+                    style: 'Magic',
+                    color: 'Negro',
+                    size: 'S',
+                    price_gs: 120000,
+                    stock: 5
+                },
+                {
+                    sku: 'remera-magic-3-blanco',
+                    style: 'Magic',
+                    color: 'Blanco',
+                    size: 'M',
+                    price_gs: 120000,
+                    stock: 8
+                },
+                {
+                    sku: 'remera-magic-3-azul',
+                    style: 'Magic',
+                    color: 'Azul',
+                    size: 'L',
+                    price_gs: 120000,
+                    stock: 3
+                }
+            ]
+        },
+        {
+            id: 'remera-x',
+            name: 'Remera X',
+            description: 'Remera básica con estilo "X". Comodidad y versatilidad para el día a día.',
+            category: 'Remeras',
+            images: [
+                './images/remera-x-roja.png',
+                './images/remera-x-blanca.png',
+                './images/remera-x-celeste.png'
+            ],
+            variants: [
+                {
+                    sku: 'remera-x-rojo',
+                    style: 'X',
+                    color: 'Rojo',
+                    size: 'S',
+                    price_gs: 110000,
+                    stock: 4
+                },
+                {
+                    sku: 'remera-x-blanco',
+                    style: 'X',
+                    color: 'Blanco',
+                    size: 'M',
+                    price_gs: 110000,
+                    stock: 6
+                },
+                {
+                    sku: 'remera-x-celeste',
+                    style: 'X',
+                    color: 'Celeste',
+                    size: 'L',
+                    price_gs: 110000,
+                    stock: 2
+                }
+            ]
+        },
+        {
+            id: 'gorra-con-m',
+            name: 'Gorra con M',
+            description: 'Gorra ajustable con el logo bordado "M". Un accesorio imprescindible.',
+            category: 'Gorras',
+            images: [
+                './images/gorra-con-m-roja.png',
+                './images/gorra-con-m-blanca.png',
+                './images/gorra-con-m-azul.png'
+            ],
+            variants: [
+                {
+                    sku: 'gorra-con-m-roja-unica',
+                    style: 'con M',
+                    color: 'Rojo',
+                    size: 'Única',
+                    price_gs: 85000,
+                    stock: 10
+                },
+                {
+                    sku: 'gorra-con-m-blanca-unica',
+                    style: 'con M',
+                    color: 'Blanco',
+                    size: 'Única',
+                    price_gs: 85000,
+                    stock: 7
+                },
+                {
+                    sku: 'gorra-con-m-azul-unica',
+                    style: 'con M',
+                    color: 'Azul',
+                    size: 'Única',
+                    price_gs: 85000,
+                    stock: 5
+                }
+            ]
+        },
+        {
+            id: 'zapatillas-urbanas-rojas',
+            name: 'Zapatillas Urbanas',
+            description: 'Zapatillas de diseño moderno y suela cómoda, ideales para el uso diario.',
+            category: 'Zapatillas',
+            images: [
+                './images/zapatillas-rojas.png',
+                './images/zapatillas-rojas-2.png'
+            ],
+            variants: [
+                {
+                    sku: 'zapatillas-rojas-38',
+                    color: 'Rojo',
+                    size: '38',
+                    price_gs: 320000,
+                    stock: 3
+                },
+                {
+                    sku: 'zapatillas-rojas-39',
+                    color: 'Rojo',
+                    size: '39',
+                    price_gs: 320000,
+                    stock: 5
+                }
+            ]
+        },
+        // Más productos aquí...
+    ];
+}

@@ -15,6 +15,7 @@
         <nav>
             <ul>
                 <li><a href="#productos">Productos</a></li>
+                <li><a href="#catalogo-video">Catálogo</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <li><a href="#" id="cart-btn" class="cart-icon"><i class="fas fa-shopping-cart"></i> Carrito (<span id="cart-count">0</span>)</a></li>
             </ul>
@@ -34,8 +35,21 @@
             </div>
         </section>
 
+        <section id="catalogo-video" class="catalog-section">
+            <video autoplay muted loop playsinline class="catalog-video-player">
+                <source src="./images/VID-20250913-WA0017.mp4" type="video/mp4">
+            </video>
+            <h2>Catálogo en Video</h2>
+        </section>
+
+        <section class="category-showcase">
+            <h2>Nuestras Colecciones</h2>
+            <div class="showcase-gallery">
+                </div>
+        </section>
+
         <section class="search-section">
-            <input type="text" id="search-input" placeholder="Buscar productos...">
+            <input type="text" id="search-input" placeholder="Buscar productos por nombre, color o estilo...">
         </section>
         
         <section class="category-buttons">
@@ -43,11 +57,12 @@
             <button class="category-btn" data-category="Zapatillas">Zapatillas</button>
             <button class="category-btn" data-category="Gorras">Gorras</button>
             <button class="category-btn" data-category="Remeras">Remeras</button>
+            <button class="category-btn" data-category="Sudaderas">Sudaderas</button>
             <button class="category-btn" data-category="Gafas">Gafas</button>
         </section>
 
         <section id="productos" class="productos">
-            <h2>Nuestros Productos</h2>
+            <h2>Productos Disponibles</h2>
             <div id="product-list" class="galeria-productos">
                 </div>
         </section>
@@ -66,8 +81,18 @@
         </div>
 
         <section id="contacto" class="contacto">
-            <h2>Datos para tu pedido</h2>
-            <form id="contact-form" action="https://formspree.io/f/tu_correo_aqui" method="POST">
+            <h2>Confirma tu pedido</h2>
+            <p class="subtitle">Completa tus datos para finalizar el pedido. Solo disponible para envíos en Paraguay.</p>
+            <div class="payment-method-container">
+                <h3>Métodos de Pago</h3>
+                <div class="payment-method">
+                    <i class="fas fa-wallet"></i>
+                    <h4>Pago por Encomienda</h4>
+                    <p>Pagas al recibir tu pedido. Costo de envío a cargo del cliente.</p>
+                </div>
+            </div>
+
+            <form id="contact-form">
                 <input type="text" id="name" placeholder="Nombre completo" name="Nombre" required>
                 <input type="text" id="cedula" placeholder="Número de Cédula" name="Cedula" required>
                 <input type="tel" id="phone" placeholder="Teléfono" name="Telefono" required>
@@ -75,7 +100,7 @@
                 <input type="text" id="region" placeholder="Región/Departamento" name="Region" required>
                 <input type="text" id="address" placeholder="Dirección para la encomienda" name="Direccion" required>
                 <textarea id="message" placeholder="Mensaje adicional (ej. referencia de casa, etc.)" name="Mensaje"></textarea>
-                <button type="submit">Enviar Pedido</button>
+                <button type="submit" class="submit-button">Confirmar y Enviar Pedido</button>
             </form>
             <div id="status-message" class="status-message"></div>
         </section>
@@ -83,8 +108,8 @@
         <section class="redes-sociales">
             <h2>Síguenos</h2>
             <div class="social-links">
-                <a href="https://www.instagram.com/mally.wear?igsh=MWppcjhseTAxOGxkYg=" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://www.tiktok.com/@mallywearpy?_t=ZM-8zfAUak3FPc&_r=1" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://www.instagram.com/mally.wear" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.tiktok.com/@mallywearpy" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
                 <a href="https://wa.me/595984869105" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
         </section>

@@ -1,5 +1,5 @@
 /* --- Estilos Generales --- */
-/* Esta es la base de tu diseño de "modo ordenador" que se aplicará en todas las pantallas. */
+/* Estos estilos se aplican a todas las pantallas, sin importar el tamaño. Son la base de tu diseño de "modo ordenador". */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -78,7 +78,7 @@ nav a:hover {
     width: auto;
     height: auto;
     z-index: -1;
-    /* Asegura que el video cubra toda el área sin distorsionarse */
+    /* Asegura que el video siempre cubra toda el área sin distorsionarse */
     object-fit: cover;
 }
 
@@ -198,9 +198,8 @@ nav a:hover {
 }
 
 .galeria-productos {
-    /* Aquí está la magia: un diseño de grid que se adapta automáticamente */
+    /* Clave para el diseño adaptable: las columnas se ajustan automáticamente */
     display: grid;
-    /* La clave: minmax crea columnas de al menos 320px que se ajustan al espacio disponible */
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 3rem;
     justify-items: center;
@@ -212,8 +211,8 @@ nav a:hover {
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-    width: 100%; /* El width se ajusta al minmax del grid */
-    max-width: 320px; /* Evita que las tarjetas sean demasiado grandes */
+    width: 100%;
+    max-width: 320px;
     text-align: center;
     transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
     position: relative;
@@ -607,9 +606,10 @@ footer {
 }
 
 /* --- AJUSTES PARA PANTALLAS MÁS PEQUEÑAS --- */
-/* Estas reglas se activan solo en pantallas de 768px o menos, haciendo ajustes mínimos. */
+/* Estas reglas solo se activan en pantallas de 768px de ancho o menos. */
+/* Hacen ajustes sutiles para que el diseño de escritorio se vea bien en móviles. */
 @media (max-width: 768px) {
-    /* Ajusta el encabezado para que se apile en pantallas pequeñas */
+    /* El encabezado se apila en una columna en lugar de estar en una fila */
     header {
         flex-direction: column;
         text-align: center;
@@ -630,7 +630,7 @@ footer {
         padding: 0.5rem;
     }
 
-    /* Reduce el tamaño de los títulos del video para que quepan */
+    /* Reduce los tamaños de los títulos del video para que quepan bien */
     .hero-overlay h1 {
         font-size: 2.5rem;
     }
@@ -643,7 +643,7 @@ footer {
         font-size: 1rem;
     }
 
-    /* Ajustes generales para el contenido principal */
+    /* Reduce el espaciado general */
     .productos, .contacto, .redes-sociales {
         padding: 2rem 1rem;
     }

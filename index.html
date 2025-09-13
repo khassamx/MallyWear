@@ -15,7 +15,6 @@
         <nav>
             <ul>
                 <li><a href="#productos">Productos</a></li>
-                <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <li><a href="#" id="cart-btn" class="cart-icon"><i class="fas fa-shopping-cart"></i> Carrito (<span id="cart-count">0</span>)</a></li>
             </ul>
@@ -35,31 +34,14 @@
             </div>
         </section>
 
-        <section id="catalogo" class="catalog-sections">
-            <h2>Nuestros Catálogos</h2>
-            
-            <div class="catalog-section">
-                <h3>Catálogo en Video</h3>
-                <video autoplay muted loop playsinline class="catalog-video-player">
-                    <source src="./images/VID-20250913-WA0017.mp4" type="video/mp4">
-                </video>
-            </div>
-            
-            <div class="catalog-section">
-                <h3>Colecciones Destacadas</h3>
-                <div class="showcase-gallery">
-                    </div>
-            </div>
-        </section>
-
-        <section class="search-section">
-            <input type="text" id="search-input" placeholder="Buscar productos por nombre, color o estilo...">
+        <section class="search-and-filter-section">
+            <input type="text" id="search-input" placeholder="Buscar por nombre, color o estilo...">
             <div class="category-buttons">
                 <button class="category-btn active" data-category="all">Todos</button>
-                <button class="category-btn" data-category="Zapatillas">Zapatillas</button>
-                <button class="category-btn" data-category="Gorras">Gorras</button>
                 <button class="category-btn" data-category="Remeras">Remeras</button>
                 <button class="category-btn" data-category="Sudaderas">Sudaderas</button>
+                <button class="category-btn" data-category="Gorras">Gorras</button>
+                <button class="category-btn" data-category="Zapatillas">Zapatillas</button>
                 <button class="category-btn" data-category="Gafas">Gafas</button>
             </div>
         </section>
@@ -85,13 +67,12 @@
 
         <section id="contacto" class="contacto">
             <h2>Confirma tu pedido</h2>
-            <p class="subtitle">Completa tus datos para finalizar el pedido. Solo disponible para envíos en Paraguay.</p>
+            <p class="subtitle">Completa tus datos para finalizar. Solo para envíos en Paraguay vía encomienda (1-5 días).</p>
             <div class="payment-method-container">
-                <h3>Métodos de Pago</h3>
                 <div class="payment-method">
-                    <i class="fas fa-wallet"></i>
+                    <i class="fas fa-money-check-alt"></i>
                     <h4>Pago por Encomienda</h4>
-                    <p>Pagas al recibir tu pedido. Costo de envío a cargo del cliente.</p>
+                    <p>Pagas al recibir tu pedido. El costo de envío se te notificará por WhatsApp.</p>
                 </div>
             </div>
 

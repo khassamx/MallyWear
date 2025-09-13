@@ -1,142 +1,42 @@
-export function getProducts() {
-    return [
-        {
-            id: 'remera-magic-3',
-            name: 'Remera Magic Código 3',
-            description: 'Remera de algodón con diseño exclusivo "Magic Código 3". Diseño minimalista y elegante.',
-            category: 'Remeras',
-            images: [
-                './images/magic-3-negra.png',
-                './images/magic-3-blanca.png',
-                './images/magic-3-azul.png'
-            ],
-            variants: [
-                {
-                    sku: 'remera-magic-3-negro',
-                    style: 'Magic',
-                    color: 'Negro',
-                    size: 'S',
-                    price_gs: 120000,
-                    stock: 5
-                },
-                {
-                    sku: 'remera-magic-3-blanco',
-                    style: 'Magic',
-                    color: 'Blanco',
-                    size: 'M',
-                    price_gs: 120000,
-                    stock: 8
-                },
-                {
-                    sku: 'remera-magic-3-azul',
-                    style: 'Magic',
-                    color: 'Azul',
-                    size: 'L',
-                    price_gs: 120000,
-                    stock: 3
-                }
-            ]
-        },
-        {
-            id: 'remera-x',
-            name: 'Remera X',
-            description: 'Remera básica con estilo "X". Comodidad y versatilidad para el día a día.',
-            category: 'Remeras',
-            images: [
-                './images/remera-x-roja.png',
-                './images/remera-x-blanca.png',
-                './images/remera-x-celeste.png'
-            ],
-            variants: [
-                {
-                    sku: 'remera-x-rojo',
-                    style: 'X',
-                    color: 'Rojo',
-                    size: 'S',
-                    price_gs: 110000,
-                    stock: 4
-                },
-                {
-                    sku: 'remera-x-blanco',
-                    style: 'X',
-                    color: 'Blanco',
-                    size: 'M',
-                    price_gs: 110000,
-                    stock: 6
-                },
-                {
-                    sku: 'remera-x-celeste',
-                    style: 'X',
-                    color: 'Celeste',
-                    size: 'L',
-                    price_gs: 110000,
-                    stock: 2
-                }
-            ]
-        },
-        {
-            id: 'gorra-con-m',
-            name: 'Gorra con M',
-            description: 'Gorra ajustable con el logo bordado "M". Un accesorio imprescindible.',
-            category: 'Gorras',
-            images: [
-                './images/gorra-con-m-roja.png',
-                './images/gorra-con-m-blanca.png',
-                './images/gorra-con-m-azul.png'
-            ],
-            variants: [
-                {
-                    sku: 'gorra-con-m-roja-unica',
-                    style: 'con M',
-                    color: 'Rojo',
-                    size: 'Única',
-                    price_gs: 85000,
-                    stock: 10
-                },
-                {
-                    sku: 'gorra-con-m-blanca-unica',
-                    style: 'con M',
-                    color: 'Blanco',
-                    size: 'Única',
-                    price_gs: 85000,
-                    stock: 7
-                },
-                {
-                    sku: 'gorra-con-m-azul-unica',
-                    style: 'con M',
-                    color: 'Azul',
-                    size: 'Única',
-                    price_gs: 85000,
-                    stock: 5
-                }
-            ]
-        },
-        {
-            id: 'zapatillas-urbanas-rojas',
-            name: 'Zapatillas Urbanas',
-            description: 'Zapatillas de diseño moderno y suela cómoda, ideales para el uso diario.',
-            category: 'Zapatillas',
-            images: [
-                './images/zapatillas-rojas.png',
-                './images/zapatillas-rojas-2.png'
-            ],
-            variants: [
-                {
-                    sku: 'zapatillas-rojas-38',
-                    color: 'Rojo',
-                    size: '38',
-                    price_gs: 320000,
-                    stock: 3
-                },
-                {
-                    sku: 'zapatillas-rojas-39',
-                    color: 'Rojo',
-                    size: '39',
-                    price_gs: 320000,
-                    stock: 5
-                }
-            ]
-        },
-        // Más productos aquí...
-    ];
-}
+[
+    {
+        "id": 1,
+        "name": "Camisa de Seda Negra",
+        "description": "Una camisa de seda suave y elegante, ideal para un look de noche.",
+        "price": 120.00,
+        "category": "camisas",
+        "images": ["images/camisa1.jpg", "images/camisa1-2.jpg"]
+    },
+    {
+        "id": 2,
+        "name": "Pantalón de Lino Crudo",
+        "description": "Pantalón cómodo y transpirable, perfecto para días cálidos.",
+        "price": 95.00,
+        "category": "pantalones",
+        "images": ["images/pantalon1.jpg", "images/pantalon1-2.jpg"]
+    },
+    {
+        "id": 3,
+        "name": "Chaqueta de Cuero Vintage",
+        "description": "Chaqueta de cuero genuino con un estilo atemporal y detalles únicos.",
+        "price": 250.00,
+        "category": "chaquetas",
+        "images": ["images/chaqueta1.jpg", "images/chaqueta1-2.jpg"]
+    },
+    {
+        "id": 4,
+        "name": "Camisa de Algodón Blanca",
+        "description": "Clásica y versátil. Un básico para cualquier guardarropa.",
+        "price": 80.00,
+        "category": "camisas",
+        "images": ["images/camisa2.jpg", "images/camisa2-2.jpg"]
+    },
+    {
+        "id": 5,
+        "name": "Pantalón Casual Gris",
+        "description": "Diseño moderno con un ajuste relajado para el día a día.",
+        "price": 85.00,
+        "category": "pantalones",
+        "images": ["images/pantalon2.jpg", "images/pantalon2-2.jpg"]
+    }
+]

@@ -109,7 +109,7 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(255,255,255,0.2);
 }
 
-/* Sección de Búsqueda */
+/* Sección de Búsqueda y Categorías */
 .search-section {
     padding: 2rem;
     background-color: #1a1a1a;
@@ -131,6 +131,33 @@ nav a:hover {
 #search-input:focus {
     outline: none;
     border-color: #ffffff;
+}
+
+.category-buttons {
+    text-align: center;
+    padding: 1rem 0 2rem;
+}
+
+.category-btn {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 0.8rem 1.5rem;
+    margin: 0 0.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background-color: #555;
+}
+
+.category-btn.active {
+    background-color: #fff;
+    color: #1a1a1a;
+    border-color: #fff;
+    font-weight: 600;
 }
 
 /* Sección de Productos */
@@ -195,6 +222,7 @@ nav a:hover {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    letter-spacing: 1px;
 }
 
 .add-to-cart:hover {

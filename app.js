@@ -3,23 +3,8 @@ import { addToCart, getCart, renderCartItems, calculateCartTotal, removeFromCart
 import { showStatusMessage } from './modules/ui.js';
 
 let allProducts = [];
-let slideIndex = 0; // Para el carrusel de imágenes
 
-// Función para el carrusel de la sección hero
-function showSlides() {
-    const slides = document.querySelectorAll('.carousel-slide');
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.remove('active');
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
-    }
-    slides[slideIndex - 1].classList.add('active');
-    setTimeout(showSlides, 5000); // Cambia de imagen cada 5 segundos
-}
-
-// Renderiza los productos en la galería
+// Función para renderizar productos, ahora puede filtrar por categoría
 function renderProducts(productsToRender) {
     const productListElement = document.getElementById('product-list');
     productListElement.innerHTML = ''; // Limpia la lista existente
@@ -41,14 +26,18 @@ function renderProducts(productsToRender) {
             </div>
             <h3>${product.name}</h3>
             <div class="opciones">
-                <label for="color-${product.id}">Color:</label>
-                <select id="color-${product.id}" class="color-select">
-                    ${[...new Set(product.variants.map(v => v.color))].map(color => `<option value="${color}">${color}</option>`).join('')}
-                </select>
-                <label for="size-${product.id}">Talla:</label>
-                <select id="size-${product.id}" class="size-select">
-                    ${[...new Set(product.variants.map(v => v.size))].map(size => `<option value="${size}">${size}</option>`).join('')}
-                </select>
+                ${product.variants[0].color ? `
+                    <label for="color-${product.id}">Color:</label>
+                    <select id="color-${product.id}" class="color-select">
+                        ${[...new Set(product.variants.map(v => v.color))].map(color => `<option value="${color}">${color}</option>`).join('')}
+                    </select>
+                ` : ''}
+                ${product.variants[0].size ? `
+                    <label for="size-${product.id}">Talla:</label>
+                    <select id="size-${product.id}" class="size-select">
+                        ${[...new Set(product.variants.map(v => v.size))].map(size => `<option value="${size}">${size}</option>`).join('')}
+                    </select>
+                ` : ''}
             </div>
             <p class="precio" id="precio-${product.id}"></p>
             <button class="add-to-cart" data-id="${product.id}">Añadir al Carrito</button>
@@ -90,7 +79,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     allProducts = await getProducts(); // Carga todos los productos
     renderProducts(allProducts);      // Renderiza los productos en la página
     updateCartCount();                // Actualiza el contador del carrito
-    showSlides();                     // Inicia el carrusel de la sección hero
 
     // Referencias a elementos del DOM
     const cartButton = document.getElementById('cart-btn');

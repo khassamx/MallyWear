@@ -1,5 +1,5 @@
-/* --- Estilos Generales --- */
-/* Estos estilos se aplican a todas las pantallas, sin importar el tamaño. Son la base de tu diseño de "modo ordenador". */
+/* --- General Styles --- */
+/* These styles apply to all screen sizes by default, forming the base of your desktop-first design. */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -7,11 +7,10 @@ body {
     background-color: #1a1a1a;
     color: #f0f0f0;
     line-height: 1.6;
-    /* Evita el desplazamiento horizontal en pantallas pequeñas */
     overflow-x: hidden;
 }
 
-/* --- Encabezado --- */
+/* --- Header --- */
 header {
     background-color: #0d0d0d;
     padding: 1rem 2rem;
@@ -57,7 +56,7 @@ nav a:hover {
     gap: 0.5rem;
 }
 
-/* --- Sección Principal (Video) --- */
+/* --- Main Section (Video) --- */
 .hero-video {
     position: relative;
     width: 100%;
@@ -78,7 +77,6 @@ nav a:hover {
     width: auto;
     height: auto;
     z-index: -1;
-    /* Asegura que el video siempre cubra toda el área sin distorsionarse */
     object-fit: cover;
 }
 
@@ -130,7 +128,7 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(255,255,255,0.2);
 }
 
-/* --- Sección de Búsqueda y Filtros --- */
+/* --- Search and Filter Section --- */
 .search-and-filter-section {
     padding: 2rem;
     background-color: #1a1a1a;
@@ -183,7 +181,7 @@ nav a:hover {
     font-weight: 600;
 }
 
-/* --- Sección de Galería de Productos --- */
+/* --- Product Gallery Section --- */
 .productos {
     padding: 4rem 2rem;
     text-align: center;
@@ -198,7 +196,6 @@ nav a:hover {
 }
 
 .galeria-productos {
-    /* Clave para el diseño adaptable: las columnas se ajustan automáticamente */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 3rem;
@@ -331,7 +328,7 @@ nav a:hover {
     box-shadow: 0 3px 10px rgba(255,255,255,0.1);
 }
 
-/* --- Carrito de Compras (Modal) --- */
+/* --- Shopping Cart (Modal) --- */
 .modal {
     display: none;
     position: fixed;
@@ -420,7 +417,7 @@ nav a:hover {
     margin-top: 1rem;
 }
 
-/* --- Sección de Contacto y Pago --- */
+/* --- Contact and Payment Section --- */
 .contacto {
     background-color: #0d0d0d;
     padding: 4rem 2rem;
@@ -539,7 +536,7 @@ nav a:hover {
     color: #fff;
 }
 
-/* --- Sección de Redes Sociales y Footer --- */
+/* --- Social Media and Footer --- */
 .redes-sociales {
     padding: 2rem;
     text-align: center;
@@ -582,7 +579,7 @@ footer {
     box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
 }
 
-/* --- Botón de WhatsApp flotante --- */
+/* --- Floating WhatsApp Button --- */
 .whatsapp-btn {
     position: fixed;
     bottom: 25px;
@@ -605,11 +602,8 @@ footer {
     transform: scale(1.1);
 }
 
-/* --- AJUSTES PARA PANTALLAS MÁS PEQUEÑAS --- */
-/* Estas reglas solo se activan en pantallas de 768px de ancho o menos. */
-/* Hacen ajustes sutiles para que el diseño de escritorio se vea bien en móviles. */
+/* --- Adjustments for smaller screens (under 768px) --- */
 @media (max-width: 768px) {
-    /* El encabezado se apila en una columna en lugar de estar en una fila */
     header {
         flex-direction: column;
         text-align: center;
@@ -630,7 +624,6 @@ footer {
         padding: 0.5rem;
     }
 
-    /* Reduce los tamaños de los títulos del video para que quepan bien */
     .hero-overlay h1 {
         font-size: 2.5rem;
     }
@@ -643,7 +636,6 @@ footer {
         font-size: 1rem;
     }
 
-    /* Reduce el espaciado general */
     .productos, .contacto, .redes-sociales {
         padding: 2rem 1rem;
     }
@@ -653,7 +645,6 @@ footer {
         margin-bottom: 2rem;
     }
 
-    /* Permite que las tarjetas de producto ocupen casi todo el ancho disponible */
     .producto {
         max-width: 90%;
         margin-bottom: 1rem;

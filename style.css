@@ -1,6 +1,5 @@
 /* --- Estilos Generales --- */
-/* Estos estilos se aplican a todas las pantallas por defecto, sin importar el tamaño. */
-/* Es la base de tu diseño de "modo ordenador". */
+/* Esta es la base de tu diseño de "modo ordenador" que se aplicará en todas las pantallas. */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -8,6 +7,8 @@ body {
     background-color: #1a1a1a;
     color: #f0f0f0;
     line-height: 1.6;
+    /* Evita el desplazamiento horizontal en pantallas pequeñas */
+    overflow-x: hidden;
 }
 
 /* --- Encabezado --- */
@@ -77,6 +78,8 @@ nav a:hover {
     width: auto;
     height: auto;
     z-index: -1;
+    /* Asegura que el video cubra toda el área sin distorsionarse */
+    object-fit: cover;
 }
 
 .hero-overlay {
@@ -194,9 +197,10 @@ nav a:hover {
     letter-spacing: 2px;
 }
 
-/* Usamos Grid para un diseño de columnas adaptable a cualquier pantalla */
 .galeria-productos {
+    /* Aquí está la magia: un diseño de grid que se adapta automáticamente */
     display: grid;
+    /* La clave: minmax crea columnas de al menos 320px que se ajustan al espacio disponible */
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 3rem;
     justify-items: center;
@@ -602,11 +606,10 @@ footer {
     transform: scale(1.1);
 }
 
-
 /* --- AJUSTES PARA PANTALLAS MÁS PEQUEÑAS --- */
-/* Estas reglas solo se activan en pantallas de 768px de ancho o menos. */
-/* Hacen ajustes sutiles para que el diseño de escritorio se vea bien en móviles. */
+/* Estas reglas se activan solo en pantallas de 768px o menos, haciendo ajustes mínimos. */
 @media (max-width: 768px) {
+    /* Ajusta el encabezado para que se apile en pantallas pequeñas */
     header {
         flex-direction: column;
         text-align: center;
@@ -620,12 +623,14 @@ footer {
         gap: 0.5rem;
         margin-top: 0;
         justify-content: center;
+        flex-wrap: wrap;
     }
     nav a {
         font-size: 0.9rem;
         padding: 0.5rem;
     }
 
+    /* Reduce el tamaño de los títulos del video para que quepan */
     .hero-overlay h1 {
         font-size: 2.5rem;
     }
@@ -637,25 +642,23 @@ footer {
         padding: 0.8rem 2rem;
         font-size: 1rem;
     }
-    .productos {
+
+    /* Ajustes generales para el contenido principal */
+    .productos, .contacto, .redes-sociales {
         padding: 2rem 1rem;
     }
-    .productos h2 {
+
+    .productos h2, .contacto h2 {
         font-size: 2rem;
         margin-bottom: 2rem;
     }
-    .galeria-productos {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-    }
+
+    /* Permite que las tarjetas de producto ocupen casi todo el ancho disponible */
     .producto {
-        width: 90%;
+        max-width: 90%;
         margin-bottom: 1rem;
     }
-    .contacto h2 {
-        font-size: 2rem;
-    }
+    
     .contacto form {
         width: 100%;
         padding: 0 1rem;

@@ -1,5 +1,5 @@
-/* --- General Styles --- */
-/* These styles apply to all screen sizes by default, forming the base of your desktop-first design. */
+/* --- Estilos Generales --- */
+/* Estos estilos son la base de tu diseño de "modo ordenador" que se aplicará en todas las pantallas. */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -10,7 +10,7 @@ body {
     overflow-x: hidden;
 }
 
-/* --- Header --- */
+/* --- Encabezado --- */
 header {
     background-color: #0d0d0d;
     padding: 1rem 2rem;
@@ -56,7 +56,7 @@ nav a:hover {
     gap: 0.5rem;
 }
 
-/* --- Main Section (Video) --- */
+/* --- Sección Principal (Video) --- */
 .hero-video {
     position: relative;
     width: 100%;
@@ -128,7 +128,7 @@ nav a:hover {
     box-shadow: 0 5px 15px rgba(255,255,255,0.2);
 }
 
-/* --- Search and Filter Section --- */
+/* --- Sección de Búsqueda y Filtros --- */
 .search-and-filter-section {
     padding: 2rem;
     background-color: #1a1a1a;
@@ -181,7 +181,7 @@ nav a:hover {
     font-weight: 600;
 }
 
-/* --- Product Gallery Section --- */
+/* --- Sección de Galería de Productos --- */
 .productos {
     padding: 4rem 2rem;
     text-align: center;
@@ -328,7 +328,7 @@ nav a:hover {
     box-shadow: 0 3px 10px rgba(255,255,255,0.1);
 }
 
-/* --- Shopping Cart (Modal) --- */
+/* --- Carrito de Compras (Modal) --- */
 .modal {
     display: none;
     position: fixed;
@@ -417,7 +417,7 @@ nav a:hover {
     margin-top: 1rem;
 }
 
-/* --- Contact and Payment Section --- */
+/* --- Sección de Contacto y Pago --- */
 .contacto {
     background-color: #0d0d0d;
     padding: 4rem 2rem;
@@ -536,7 +536,7 @@ nav a:hover {
     color: #fff;
 }
 
-/* --- Social Media and Footer --- */
+/* --- Sección de Redes Sociales y Footer --- */
 .redes-sociales {
     padding: 2rem;
     text-align: center;
@@ -579,7 +579,7 @@ footer {
     box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
 }
 
-/* --- Floating WhatsApp Button --- */
+/* --- Botón de WhatsApp flotante --- */
 .whatsapp-btn {
     position: fixed;
     bottom: 25px;
@@ -602,8 +602,11 @@ footer {
     transform: scale(1.1);
 }
 
-/* --- Adjustments for smaller screens (under 768px) --- */
+/* --- AJUSTES PARA PANTALLAS MÁS PEQUEÑAS --- */
+/* Estas reglas solo se activan en pantallas de 768px de ancho o menos. */
+/* Hacen ajustes sutiles para que el diseño de escritorio se vea bien en móviles. */
 @media (max-width: 768px) {
+    /* El encabezado se apila en una columna en lugar de estar en una fila */
     header {
         flex-direction: column;
         text-align: center;
@@ -624,6 +627,7 @@ footer {
         padding: 0.5rem;
     }
 
+    /* Reduce los tamaños de los títulos del video para que quepan bien */
     .hero-overlay h1 {
         font-size: 2.5rem;
     }
@@ -636,6 +640,7 @@ footer {
         font-size: 1rem;
     }
 
+    /* Reduce el espaciado general */
     .productos, .contacto, .redes-sociales {
         padding: 2rem 1rem;
     }
@@ -645,6 +650,7 @@ footer {
         margin-bottom: 2rem;
     }
 
+    /* Permite que las tarjetas de producto ocupen casi todo el ancho disponible */
     .producto {
         max-width: 90%;
         margin-bottom: 1rem;

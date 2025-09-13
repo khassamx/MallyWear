@@ -15,7 +15,7 @@
         <nav>
             <ul>
                 <li><a href="#productos">Productos</a></li>
-                <li><a href="#catalogo-video">Catálogo</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <li><a href="#" id="cart-btn" class="cart-icon"><i class="fas fa-shopping-cart"></i> Carrito (<span id="cart-count">0</span>)</a></li>
             </ul>
@@ -35,30 +35,33 @@
             </div>
         </section>
 
-        <section id="catalogo-video" class="catalog-section">
-            <video autoplay muted loop playsinline class="catalog-video-player">
-                <source src="./images/VID-20250913-WA0017.mp4" type="video/mp4">
-            </video>
-            <h2>Catálogo en Video</h2>
-        </section>
-
-        <section class="category-showcase">
-            <h2>Nuestras Colecciones</h2>
-            <div class="showcase-gallery">
-                </div>
+        <section id="catalogo" class="catalog-sections">
+            <h2>Nuestros Catálogos</h2>
+            
+            <div class="catalog-section">
+                <h3>Catálogo en Video</h3>
+                <video autoplay muted loop playsinline class="catalog-video-player">
+                    <source src="./images/VID-20250913-WA0017.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <div class="catalog-section">
+                <h3>Colecciones Destacadas</h3>
+                <div class="showcase-gallery">
+                    </div>
+            </div>
         </section>
 
         <section class="search-section">
             <input type="text" id="search-input" placeholder="Buscar productos por nombre, color o estilo...">
-        </section>
-        
-        <section class="category-buttons">
-            <button class="category-btn active" data-category="all">Todos</button>
-            <button class="category-btn" data-category="Zapatillas">Zapatillas</button>
-            <button class="category-btn" data-category="Gorras">Gorras</button>
-            <button class="category-btn" data-category="Remeras">Remeras</button>
-            <button class="category-btn" data-category="Sudaderas">Sudaderas</button>
-            <button class="category-btn" data-category="Gafas">Gafas</button>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">Todos</button>
+                <button class="category-btn" data-category="Zapatillas">Zapatillas</button>
+                <button class="category-btn" data-category="Gorras">Gorras</button>
+                <button class="category-btn" data-category="Remeras">Remeras</button>
+                <button class="category-btn" data-category="Sudaderas">Sudaderas</button>
+                <button class="category-btn" data-category="Gafas">Gafas</button>
+            </div>
         </section>
 
         <section id="productos" class="productos">
